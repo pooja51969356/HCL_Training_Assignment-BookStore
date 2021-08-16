@@ -75,7 +75,7 @@ public class BookServiceImpl implements BookService{
 	public List<BookResponseDto> selectBookDetailByPublisher(String publisherName) {
 		
 		List<BookModel> bookModelResponse=bookRepository.findByPublisher(publisherName);
-		if(bookModelResponse!=null && bookModelResponse.isEmpty())		
+		if(bookModelResponse!=null && !bookModelResponse.isEmpty())		
 			return prepareBookDetailForResponseList(bookModelResponse);
 		else
 			throw new NotFoundException("No Record Found For publisherName :"+publisherName );
@@ -85,7 +85,7 @@ public class BookServiceImpl implements BookService{
 	public List<BookResponseDto> selectBookDetailByBookNameAndBookAuther(String bookName, String bookAuther) {
 		
 		List<BookModel> bookModelResponse=bookRepository.findByBookNameAndAuther(bookName,bookAuther);
-		if(bookModelResponse!=null && bookModelResponse.isEmpty())		
+		if(bookModelResponse!=null && !bookModelResponse.isEmpty())		
 			return prepareBookDetailForResponseList(bookModelResponse);
 		else
 			throw new IllegalArgumentException("No Record Found For bookName : "+bookName +" And bookAuther: "+bookAuther );
@@ -95,7 +95,7 @@ public class BookServiceImpl implements BookService{
 	public List<BookResponseDto> selectBookDetailByBookNameOrBookAuther(String bookName, String bookAuther) {
 		
 		List<BookModel> bookModelResponse=bookRepository.findByBookNameOrAuther(bookName,bookAuther);
-		if(bookModelResponse!=null && bookModelResponse.isEmpty())		
+		if(bookModelResponse!=null && !bookModelResponse.isEmpty())		
 			return prepareBookDetailForResponseList(bookModelResponse);
 		else
 			throw new IllegalArgumentException("No Record Found For bookName : "+bookName +" Or bookAuther: "+bookAuther );
@@ -104,7 +104,7 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public List<BookResponseDto> selectBookDetailByBookIdLessThenOrEqualsTo(Integer bookIdRange) {
 		List<BookModel> bookModelResponse=bookRepository.findByBookIdLessThanEqual(bookIdRange);
-		if(bookModelResponse!=null && bookModelResponse.isEmpty())		
+		if(bookModelResponse!=null && !bookModelResponse.isEmpty())		
 			return prepareBookDetailForResponseList(bookModelResponse);
 		else
 			throw new IllegalArgumentException("No Record Found " );
@@ -113,7 +113,7 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public List<BookResponseDto> selectBookDetailByBookAutherStartingWith(String autherStartingName) {
 		List<BookModel> bookModelResponse=bookRepository.findByAutherStartingWith(autherStartingName);
-		if(bookModelResponse!=null && bookModelResponse.isEmpty())		
+		if(bookModelResponse!=null && !bookModelResponse.isEmpty())		
 			return prepareBookDetailForResponseList(bookModelResponse);
 		else
 			throw new IllegalArgumentException("No Record Found For match : "+ autherStartingName);
@@ -122,7 +122,7 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public List<BookResponseDto> selectBookDetailByBookNameContaining(String bookNameContaingLetter) {
 		List<BookModel> bookModelResponse=bookRepository.findByBookNameContaining(bookNameContaingLetter);
-		if(bookModelResponse!=null && bookModelResponse.isEmpty())		
+		if(bookModelResponse!=null && !bookModelResponse.isEmpty())		
 			return prepareBookDetailForResponseList(bookModelResponse);
 		else
 			throw new IllegalArgumentException("No Record Found For match : "+ bookNameContaingLetter);
